@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SetPoint.cpp" />
+    <ClCompile Include="Finalv4.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA0EECA2-273F-4387-B53E-9F01BC82C624}</ProjectGuid>
@@ -73,7 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\OpenCV-3.2.0\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\OpenCV-3.2.0\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Rodney\Documents\Visual Studio 2015\Projects\Laberinto\LibreriasTutoriales-master;C:\OpenCV-3.2.0\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

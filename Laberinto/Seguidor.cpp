@@ -4,20 +4,20 @@
 
 #include<iostream>
 
+using namespace cv;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 int main() {
-	cv::VideoCapture capWebcam(0);		// declare a VideoCapture object and associate to webcam, 0 => use 1st webcam
-
-	if (capWebcam.isOpened() == false) {				// check if VideoCapture object was associated to webcam successfully
+	VideoCapture capWebcam(1);
+	if (capWebcam.isOpened() == false) {								// check if VideoCapture object was associated to webcam successfully
 		std::cout << "error: capWebcam not accessed successfully\n\n";	// if not, print error message to std out
 		return(0);														// and exit program
 	}
 
-	cv::Mat imgOriginal;		// input image
-	cv::Mat imgHSV;
-	cv::Mat imgThreshLow;
-	cv::Mat imgThreshHigh;
-	cv::Mat imgThresh;
+	Mat imgOriginal;		// input image
+	Mat imgHSV;
+	Mat imgThreshLow;
+	Mat imgThreshHigh;
+	Mat imgThresh;
 
 	std::vector<cv::Vec3f> v3fCircles;				// 3 element vector of floats, this will be the pass by reference output of HoughCircles()
 
@@ -31,19 +31,19 @@ int main() {
 			break;													// and jump out of while loop
 		}
 
-		cv::cvtColor(imgOriginal, imgHSV, CV_BGR2HSV);
+		cvtColor(imgOriginal, imgHSV, CV_BGR2HSV);
 
-		cv::inRange(imgHSV, cv::Scalar(0, 155, 155), cv::Scalar(18, 255, 255), imgThreshLow);
-		cv::inRange(imgHSV, cv::Scalar(165, 155, 155), cv::Scalar(179, 255, 255), imgThreshHigh);
+		inRange(imgHSV, cv::Scalar(0, 155, 155), cv::Scalar(18, 255, 255), imgThreshLow);
+		inRange(imgHSV, cv::Scalar(165, 155, 155), cv::Scalar(179, 255, 255), imgThreshHigh);
 
-		cv::add(imgThreshLow, imgThreshHigh, imgThresh);
+		add(imgThreshLow, imgThreshHigh, imgThresh);
 
-		cv::GaussianBlur(imgThresh, imgThresh, cv::Size(3, 3), 0);
+		GaussianBlur(imgThresh, imgThresh, cv::Size(3, 3), 0);
 
-		cv::Mat structuringElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+		Mat structuringElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
 
-		cv::dilate(imgThresh, imgThresh, structuringElement);
-		cv::erode(imgThresh, imgThresh, structuringElement);
+		dilate(imgThresh, imgThresh, structuringElement);
+		erode(imgThresh, imgThresh, structuringElement);
 
 		// fill circles vector with all circles in processed image
 		cv::HoughCircles(imgThresh,			// input image

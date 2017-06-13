@@ -1,3 +1,6 @@
+#include<opencv2/core/core.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include<opencv2/imgproc/imgproc.hpp>
 #include <opencv2\opencv.hpp>
 #include<iostream>
 #include <string>
@@ -24,70 +27,6 @@ void Centro(Mat img,Rect r) {
 		
 	}
 
-void VerificaColor() {
-
-
-}
-
-void Cuadriculacion(Mat img) {
-	vector<Mat> Cuadriculacion;
-
-
-	Rect croppedRectangle = Rect(37, 146, 137, 246);
-	Mat CroppedImage = img(croppedRectangle);
-	
-	Cuadriculacion.push_back(CroppedImage);
-//	imshow("CORTE",CroppedImage);
-	cout << "Tamaño del vector  : " << Cuadriculacion.size() << endl;
-
-	
-}
-
-void dibujador(Mat img, int xMax, int yMax, int xMin,int yMin) {
-	vector<Mat> Cuadriculacion;
-	int lado = 100; // lado del Cuadrado de referencia
-
-	cout << "\nxMax: " << (xMax/lado) << " yMax:  " << (yMax/lado) << " xmin: " << xMin << "  Ymin  " << yMin<<"...."<<endl;
-
-	
-
-// Elementos Necesarios Para el Rectangulo
-	int VSIx = xMin;		// Coordenadas superior IZQ
-	int VSIy = yMin;
-
-	int VIDx = xMin + 100;	//	Coordenadas Vertice Opuesto al anterior
-	int VIDy = yMin + 100;	
-	int xx = 0;
-//	int Sx,Sy,Ix,Iy;
-	int Sx = VSIx, Sy = VSIy, Ix = VIDx, Iy = VIDy;
-	//rectangle(img, Point(0, 0), Point(100, 100), Verde);
-
-
-	for (int i= 0; i<(xMax/lado)+1; i++)
-	{ 
-		for (int j = 0; j < ((yMax/lado)-2); j++)
-		{
-			
-	//		cout << "i: " << i << " , " << " j: " << j << endl;
-			cout << "VSI (" << Sx << "," << Sy << " ) " << "VID (" << Ix << "," << Iy << " ) " << endl;
-			
-			rectangle(img, Point(Sx,Sy), Point(Ix, Iy), Verde);
-	//		Rect Rectangulos = Rect(37,46,137,146);
-	//		Centro(img, Rectangulos);
-	//		Mat CroppedImage = img(Rect(Sx, Sy, Ix, Iy));
-	//		Cuadriculacion.push_back(CroppedImage);
-	//		imshow("CORTE", CroppedImage);
-
-			Sx = VSIx + 100 * i; Sy = VSIy + 100 * j;
-			Ix = VIDx + 100 * i; Iy = VIDy + 100 * j; xx++;
-		}
-
-	}
-	
-	cout<<"Tamaño del vector  : " << xx <<endl;
-
-}
-
 
 
 void main()
@@ -103,12 +42,29 @@ void main()
 								//canal BGR de tipo CV_8U( valores de 0 a 255)
 								//inicializamos a 0 (color negro)
 	Mat binary, hsv, wtr;
-	Mat img_0 = imread("laberinto.jpg");
+	Mat img_0;
+		//= imread("laberinto.jpg");
 	Mat img;
-	resize(img_0, img, Size(800, 600), 0, 0, INTER_LINEAR);  // ya es de 800x600 por defecto
-	imwrite("LABv2.jpg", img);
+	
 
+	VideoCapture capWebcam(1);
+	char charCheckForEscKey = 0;
+	while (charCheckForEscKey != 27 && capWebcam.isOpened()) {		// until the Esc key is pressed or webcam connection is lost
+		bool blnFrameReadSuccessfully = capWebcam.read(img_0);		// get next frame
 
+		if (!blnFrameReadSuccessfully || img_0.empty()) {		// if frame not read successfully
+			std::cout << "error: frame not read from webcam\n";		// print error message to std out
+			break;													// and jump out of while loop
+		}
+		imshow("sdfsdfsd",img_0);
+	}
+
+	system("pause");
+	//imwrite("Prueba.jpg", img);
+	(img_0, img, Size(800, 600), 0, 0, INTER_LINEAR);  // ya es de 800x600 por defecto
+	//imwrite("Prueba.jpg", img);
+	//imwrite("LABv2.jpg", img);
+//	img = imread("Prueba.jpg");
 
 	xMax = img.size().height;
 	yMax = img.size().width;
@@ -162,8 +118,6 @@ void main()
 	c = 0;
 
 	//Cuadriculacion(img);
-
-	dibujador(img, xMax, yMax, xIN, yIN);
 
 	imshow("Original", img);
 	//imshow("BIniraio", binary);

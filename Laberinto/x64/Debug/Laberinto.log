@@ -1,3 +1,10 @@
-﻿  SetPoint.cpp
-  Laberinto.vcxproj -> c:\users\rodney\documents\visual studio 2015\Projects\Laberinto\x64\Debug\Laberinto.exe
-  Laberinto.vcxproj -> c:\users\rodney\documents\visual studio 2015\Projects\Laberinto\x64\Debug\Laberinto.pdb (Partial PDB)
+﻿  Finalv4.cpp
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(187): warning C4101: 'a': unreferenced local variable
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(187): warning C4101: 'q': unreferenced local variable
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(187): warning C4101: 's': unreferenced local variable
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(187): warning C4101: 'w': unreferenced local variable
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(187): warning C4101: 'd': unreferenced local variable
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(638): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\rodney\documents\visual studio 2015\projects\laberinto\laberinto\finalv4.cpp(215): warning C4715: 'comandoGuia': not all control paths return a value
+  Laberinto.vcxproj -> C:\Users\Rodney\documents\visual studio 2015\Projects\Laberinto\x64\Debug\Laberinto.exe
+  Laberinto.vcxproj -> C:\Users\Rodney\documents\visual studio 2015\Projects\Laberinto\x64\Debug\Laberinto.pdb (Partial PDB)

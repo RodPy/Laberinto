@@ -24,3 +24,16 @@ int main() {
 
 	waitKey(0);
 }
+	//Grayscale matrix
+		cv::Mat grayscaleMat(img.size(), CV_8U);
+
+		//Convert BGR to Gray
+		cv::cvtColor(img, grayscaleMat, CV_BGR2GRAY);
+
+		//Binary image
+		cv::Mat binaryMat(grayscaleMat.size(), grayscaleMat.type());
+
+		//Apply thresholding
+		cv::threshold(grayscaleMat, binaryMat, 100, 255, cv::THRESH_BINARY);
+
+		grayscaleMat.copyTo(img);
